@@ -1,6 +1,15 @@
 <?php
 
+$body = '';
+$period = new DatePeriod(
+  new DateTime('first day of this month'),
+  new DateInterval('P1D'),
+  new DateTime('first day of next month')
+);
 
+foreach ($period as $day) {
+  $body .= sprintf('<td>%d</td>', $day->format('d'));
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -29,22 +38,7 @@
           <td>Sat</td>
         </tr>
         <tr>
-          <td class="youbi_0">1</td>
-          <td class="youbi_1">2</td>
-          <td class="youbi_2">3</td>
-          <td class="youbi_3">4</td>
-          <td class="youbi_4 today">5</td>
-          <td class="youbi_5">6</td>
-          <td class="youbi_6">7</td>
-        </tr>
-        <tr>
-          <td class="youbi_0">30</td>
-          <td class="youbi_1">31</td>
-          <td class="gray">1</td>
-          <td class="gray">2</td>
-          <td class="gray">3</td>
-          <td class="gray">4</td>
-          <td class="gray">5</td>
+          <?php echo $body ?>
         </tr>
       </tbody>
       <tfoot>
